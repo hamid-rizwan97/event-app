@@ -1,28 +1,47 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <header>
+      <app-header></app-header>
+    </header>
+    <app-ninjas v-bind:ninjas="ninjas"></app-ninjas>
+    <hr />
+    <button v-on:click="DeleteNinja()">Delete ninja</button>
+    <hr />
+    <footer>
+      <app-footer></app-footer>
+    </footer>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import header from "./components/header.vue";
+import footer from "./components/footer.vue";
+import ninjas from "./components/ninjas.vue";
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    "app-header": header,
+    "app-footer": footer,
+    "app-ninjas": ninjas,
+  },
+  data() {
+    return {
+      title: "First vue application",
+      ninjas: [
+        { name: "Ryan", speciality: "Vue Components", show: false },
+        { name: "Crystal", speciality: "Angular", show: false },
+        { name: "Hitoshi", speciality: "HTML & Bootstrap", show: false },
+        { name: "Tango", speciality: "Magento", show: false },
+        { name: "Kami", speciality: "Laravel", show: false },
+        { name: "Yoshi", speciality: "React", show: false },
+      ],
+    };
+  },
+  methods: {
+    DeleteNinja() {
+      this.ninjas.pop();
+    }
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
